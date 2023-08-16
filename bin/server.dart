@@ -36,7 +36,15 @@ class ServeHandler {
       var senha = json['senha'];
 
       if (usuario == 'abs@hotmail' && senha == '1234') {
-        return Response.ok('Login realiado \nEmail: ${json['email']}');
+        Map result = {"token": "token_1234", "user_id": 1};
+        String jsonResponse = jsonEncode(result);
+
+        return Response.ok(
+          jsonResponse,
+          headers: {
+            'Content-Type': 'application/json; charset=utf-8',
+          },
+        );
       } else {
         return Response.forbidden('Login não realizado');
       }
